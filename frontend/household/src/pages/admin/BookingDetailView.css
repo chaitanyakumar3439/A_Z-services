@@ -1,0 +1,79 @@
+/* --- TIMELINE VISUALS --- */
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+.dot.start { background: #6366f1; }
+.dot.end { background: #10b981; }
+.dot.pending { background: #cbd5e1; }
+
+/* --- GALLERY ENHANCEMENTS --- */
+.gallery-img-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 85px;
+    cursor: pointer;
+    border: 1px solid #e2e8f0;
+}
+
+.gallery-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.img-hover-hint {
+    position: absolute;
+    inset: 0;
+    background: rgba(99, 102, 241, 0.6);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.gallery-img-wrapper:hover .img-hover-hint { opacity: 1; }
+.gallery-img-wrapper:hover img { transform: scale(1.1); }
+
+.no-images-placeholder {
+    grid-column: 1 / -1;
+    background: #f1f5f9;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 650px) {
+    .info-section {
+        grid-template-columns: 1fr !important;
+    }
+    .booking-detail-modal {
+        max-height: 95vh;
+        width: 100%;
+        border-radius: 0; /* Full screen feel on mobile */
+    }
+}

@@ -1,0 +1,222 @@
+/* --- 1. BASE LAYOUT --- */
+.customer-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- 2. DESKTOP SIDEBAR --- */
+.customer-sidebar {
+  width: 280px;
+  background-color: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+
+.sidebar-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.sidebar-user-info {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar-avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #3b82f6;
+}
+
+.sidebar-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sidebar-user-info h4 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 1.1rem;
+}
+
+.sidebar-user-info p {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+/* --- 3. NAVIGATION BUTTONS --- */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.sidebar-nav button, .sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.85rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 12px;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.sidebar-nav button svg, .sidebar-logout svg {
+  font-size: 1.2rem;
+}
+
+.sidebar-nav button:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.sidebar-nav button.active {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.sidebar-logout {
+  margin-top: auto;
+  color: #ef4444;
+}
+
+.sidebar-logout:hover {
+  background-color: #fef2f2;
+}
+
+/* --- 4. MAIN CONTENT AREA --- */
+.customer-main-content {
+  flex-grow: 1;
+  margin-left: 280px; /* Same as sidebar width */
+  padding: 2rem;
+  width: calc(100% - 280px);
+}
+
+/* --- 5. MOBILE RESPONSIVENESS (The Bottom Bar) --- */
+@media (max-width: 1024px) {
+  .customer-sidebar {
+    width: 240px;
+  }
+  .customer-main-content {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+  }
+}
+
+@media (max-width: 768px) {
+  .customer-container {
+    flex-direction: column;
+  }
+
+  .customer-sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    flex-direction: row;
+    padding: 0 10px;
+    border-right: none;
+    border-top: 1px solid #e2e8f0;
+    align-items: center;
+    justify-content: center; /* Keep tabs centered */
+  }
+
+  /* Hide Brand and User Info on Mobile Bottom Bar */
+  .sidebar-brand, .sidebar-user-info {
+    display: none;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    gap: 0;
+  }
+
+  .sidebar-nav button, .sidebar-logout {
+    flex-direction: column;
+    padding: 8px 0;
+    gap: 4px;
+    font-size: 0.7rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+  }
+
+  .sidebar-nav button span, .sidebar-logout span {
+    display: block; /* Text below icon */
+    font-size: 10px;
+  }
+
+  .sidebar-nav button svg, .sidebar-logout svg {
+    font-size: 1.4rem;
+  }
+
+  .sidebar-logout {
+    margin-top: 0;
+    width: auto;
+    padding: 8px 10px;
+  }
+
+  .customer-main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: 1rem;
+    padding-bottom: 90px; /* Room for the bottom bar */
+  }
+}
+
+/* Loader Styling */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Sidebar custom button treatment for AI feature */
+.ai-tab-button {
+  color: #a5b4fc !important; /* Lighter indigo text color */
+}
+
+/* Subtle continuous ambient pulse glow for the AI tab button */
+.ai-tab-highlight {
+  background: linear-gradient(90deg, #4f46e5 0%, #312e81 100%) !important;
+  border-left: 4px solid #818cf8 !important;
+  font-weight: 600;
+}

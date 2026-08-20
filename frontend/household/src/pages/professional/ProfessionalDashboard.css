@@ -1,0 +1,342 @@
+:root {
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 80px;
+  --primary-navy: #0f172a;
+  --accent-blue: #3b82f6;
+  --bg-slate: #f8fafc;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pro-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-slate);
+  overflow: hidden;
+}
+
+/* --- SIDEBAR --- */
+.pro-sidebar {
+  width: var(--sidebar-width);
+  background: white;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  flex-shrink: 0;
+  transition: var(--transition);
+  z-index: 100;
+}
+
+.sidebar-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  margin-bottom: 2rem;
+  padding-left: 0.5rem;
+  white-space: nowrap;
+}
+
+/* User Info Card in Sidebar */
+.sidebar-user-info {
+  background: var(--bg-slate);
+  padding: 1rem;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+}
+
+.sidebar-avatar {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 0.75rem;
+  border-radius: 20px; /* Modern Squircle */
+  overflow: hidden;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.sidebar-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sidebar-user-info h4 {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--primary-navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pro-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  background: #eff6ff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+/* Navigation Links */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.sidebar-nav button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: none;
+  background: none;
+  border-radius: 12px;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.sidebar-nav button svg {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.sidebar-nav button:hover {
+  background: #f1f5f9;
+  color: var(--primary-navy);
+}
+
+.sidebar-nav button.active {
+  background: var(--primary-navy);
+  color: white;
+}
+
+.job-count-badge {
+  margin-left: auto;
+  background: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 6px;
+  min-width: 18px;
+}
+
+.sidebar-logout {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #fff1f2;
+  color: #e11d48;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* --- MAIN CONTENT --- */
+.pro-main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  height: 100vh;
+}
+
+/* --- HALF-SCREEN & RESPONSIVE --- */
+
+@media (max-width: 1000px) {
+  /* Collapse sidebar to icons only */
+  .pro-sidebar {
+    width: var(--sidebar-collapsed-width);
+    padding: 1.5rem 0.75rem;
+  }
+
+  .sidebar-brand, 
+  .sidebar-user-info h4, 
+  .pro-badge, 
+  .sidebar-nav button span:not(.job-count-badge), 
+  .sidebar-logout span {
+    display: none; /* Hide text */
+  }
+
+  .sidebar-user-info {
+    padding: 0.5rem;
+    background: transparent;
+  }
+
+  .sidebar-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+  }
+
+  .sidebar-nav button {
+    justify-content: center;
+    padding: 12px 0;
+  }
+
+  .job-count-badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    margin: 0;
+  }
+  
+  .sidebar-nav button { position: relative; }
+  
+  .pro-main-content {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Mobile View (Bottom Nav) could be added here, 
+   but for "Half Screen", the collapsed sidebar above is better. */
+
+/* LOADER */
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--accent-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+/* --- PROFESSIONAL MOBILE NAVIGATION (YouTube Style) --- */
+@media (max-width: 600px) {
+  .pro-container {
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .pro-sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 65px;
+    background: white !important;
+    border-top: 1px solid #e2e8f0;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 1000;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Hide headers and profile info on the bottom bar */
+  .sidebar-brand, 
+  .sidebar-user-info {
+    display: none !important;
+  }
+
+  .sidebar-nav {
+    display: flex !important;
+    flex-direction: row !important;
+    flex: 4 !important;
+    height: 100% !important;
+    gap: 0 !important;
+  }
+
+  /* Style for all buttons */
+  .sidebar-nav button, 
+  .sidebar-logout {
+    flex: 1 !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 2px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: var(--text-muted) !important;
+    font-size: 10px !important;
+    position: relative; /* Essential for the badge positioning */
+  }
+
+  .sidebar-nav button svg, 
+  .sidebar-logout svg {
+    font-size: 1.3rem !important;
+  }
+
+  /* Active State */
+  .sidebar-nav button.active {
+    color: var(--accent-blue) !important;
+    background: transparent !important;
+  }
+
+  /* RED NOTIFICATION BADGE (Requests) */
+  .job-count-badge {
+    position: absolute !important;
+    top: 8px !important;
+    right: 20% !important; /* Positions it nicely over the briefcase icon */
+    margin: 0 !important;
+    font-size: 8px !important;
+    padding: 2px 5px !important;
+    border: 2px solid white; /* Adds a clean border so it pops */
+  }
+
+  /* Logout Button */
+  .sidebar-logout {
+    flex: 1 !important;
+    color: #e11d48 !important;
+  }
+
+  .sidebar-logout span {
+    display: block !important;
+  }
+
+  /* Main Content Layout Reset */
+  .pro-main-content {
+    flex: 1;
+    width: 100vw !important;
+    margin-left: 0 !important;
+    padding: 15px !important;
+    padding-bottom: 80px !important; /* Space so bottom items aren't hidden */
+    height: calc(100vh - 65px) !important;
+    overflow-y: auto;
+  }
+
+  /* Force child components to align left */
+  .pro-main-content > div,
+  .tab-view,
+  .overview-container,
+  .profile-container {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  h1, h2, h3 {
+    text-align: left !important;
+    margin-left: 0 !important;
+  }
+}
